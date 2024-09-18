@@ -1,0 +1,56 @@
+<html>
+<body>
+Reports standard setter method that can be replaced by the lombok <code>@Setter</code> annotation.
+<p>Example:</p>
+<pre><code>
+
+class TestLombok {
+    // to be replaced
+    private String test;
+    // don't replace,because @Getter will generate getCStartDate, not getcStartDate;
+    private String cStartDate;
+    // don't replace,because return has other thing
+    private String noReplace;
+
+    /**
+     * test comment
+     * @param test
+     */
+    public void setTest(String test) {
+        this.test = test;
+    }
+
+    public void setcStartDate(String cStartDate) {
+        this.cStartDate = cStartDate;
+    }
+
+    public void setNoReplace(String noReplace) {
+        this.noReplace = noReplace + "1";
+    }
+}
+
+</code></pre>
+<p>After the quick-fix/cleanup is applied:</p>
+<pre><code>
+class TestLombok {
+    // to be replaced
+    private String test;
+    // don't replace,because @Getter will generate getCStartDate, not getcStartDate;
+    private String cStartDate;
+    // don't replace,because return has other thing
+    private String noReplace;
+
+    public void setcStartDate(String cStartDate) {
+        this.cStartDate = cStartDate;
+    }
+
+    public void setNoReplace(String noReplace) {
+        this.noReplace = noReplace + "1";
+    }
+}
+</code></pre>
+<p>It only reports when the lombok library is configured. To unlombok, see the lombok site.</p>
+<!-- tooltip end -->
+<p><small>New in 2023.2</small></p>
+</body>
+</html>
