@@ -1,0 +1,41 @@
+<idea-plugin>
+  <id>cwc.lombokInspection</id>
+  <name>Getter/Setter To Lombok</name>
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.java</depends>
+  <description>
+    <![CDATA[
+      <b>Transfer Getter / Setter Methods To Lombok Annotation</b>
+      </br>
+      <p>
+        <a href="https://github.com/JetBrains/intellij-community/tree/master/plugins/lombok">
+         Modify from intellij-community plugins lombok
+        </a>
+      </p>
+      </br>
+      <b>Change:</b>
+      <ul>
+        <li>remove comment</li>
+        <li>add the annotation before class, rather than field </li>
+        <li>ignore the ENUM type, just replace CLASS type </li>
+        <li>fix the field with “[a-z][A-Z].*” bug, such as cStartDate </li>
+        <li>fix the repeat annotations bug </li>
+      </ul>
+    ]]>
+  </description>
+
+  <vendor>JetBrains</vendor>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <localInspection groupPath="Java" language="JAVA" shortName="NewLombokGetterMayBeUsed" enabledByDefault="true" level="WARNING"
+                     bundle="messages.InspectionBundle" key="inspection.lombok.getter.may.be.used"
+                     groupBundle="messages.InspectionsBundle" groupKey="group.names.verbose.or.redundant.code.constructs"
+                     implementationClass="cwc.lombokInspection.inspection.LombokGetterMayBeUsedInspection" />
+
+    <localInspection groupPath="Java" language="JAVA" shortName="NewLombokSetterMayBeUsed" enabledByDefault="true" level="WARNING"
+                     bundle="messages.InspectionBundle" key="inspection.lombok.setter.may.be.used"
+                     groupBundle="messages.InspectionsBundle" groupKey="group.names.verbose.or.redundant.code.constructs"
+                     implementationClass="cwc.lombokInspection.inspection.LombokSetterMayBeUsedInspection" />
+  </extensions>
+
+</idea-plugin>
