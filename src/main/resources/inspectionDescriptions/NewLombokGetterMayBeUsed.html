@@ -1,0 +1,52 @@
+<html>
+<body>
+Reports standard getter method that can be replaced by the lombok <code>@Getter</code> annotation.
+<p>Example:</p>
+<pre><code>
+class TestLombok {
+    // to be replaced
+    private String test;
+    // don't replace,because @Getter will generate getCStartDate, not getcStartDate;
+    private String cStartDate;
+    // don't replace,because return has other thing
+    private String noReplace;
+
+    public String getTest() {
+        return test;
+    }
+
+    public String getcStartDate() {
+        return cStartDate;
+    }
+
+    public String getNoReplace() {
+        return noReplace + "1";
+    }
+}
+
+</code></pre>
+<p>After the quick-fix/cleanup is applied:</p>
+<pre><code>
+@Getter
+class TestLombok {
+    // to be replaced
+    private String test;
+    // don't replace,because @Getter will generate getCStartDate, not getcStartDate;
+    private String cStartDate;
+    // don't replace,because return has other thing
+    private String noReplace;
+
+    public String getcStartDate() {
+        return cStartDate;
+    }
+
+    public String getNoReplace() {
+        return noReplace + "1";
+    }
+}
+</code></pre>
+<p>It only reports when the lombok library is configured. To unlombok, see the lombok site.</p>
+<!-- tooltip end -->
+<p><small>New in 2023.2</small></p>
+</body>
+</html>
