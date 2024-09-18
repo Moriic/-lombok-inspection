@@ -26,6 +26,8 @@ import com.intellij.psi.PsiModifierListOwner;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
 import com.siyeh.ig.psiutils.CommentTracker;
 
+import cwc.lombokInspection.LombokClassNames;
+
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
@@ -211,7 +213,7 @@ public abstract class LombokGetterOrSetterMayBeUsedInspection extends LombokJava
       for (PsiAnnotation annotation : annotations) {
         String annotationName = annotation.getQualifiedName();
         if (annotationName != null &&
-          (annotationName.equals(getAnnotationName()) || annotationName.equals("lombok.Data"))) {
+          (annotationName.equals(getAnnotationName()) || annotationName.equals(LombokClassNames.DATA))) {
           return true;
         }
       }
